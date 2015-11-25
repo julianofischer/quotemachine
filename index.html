@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel='stylesheet prefetch' href='css/bootstrap.min.css'>
+    <link rel='stylesheet prefetch' href='css/font-awesome.min.css'>
+
+    <style>
+        .top-space{
+            margin-top: 20px;
+        }
+
+        body {
+            background-color: #9acfea;
+        }
+
+        h1{
+            text-shadow: 2px 2px 2px #000;
+        }
+
+        .btn:hover{
+            transform: scale(1.2);
+            transition: 0.3s;
+        }
+    </style>
+
+    <script>
+        var Quote = function(quote,author) {
+            this.quote = quote;
+            this.author = author;
+        };
+
+        var quotes = []
+        quotes.push(new Quote("My quote 1","Author 1"));
+        quotes.push(new Quote("My quote 2","Author 1"));
+        quotes.push(new Quote("My quote 3","Author 2"));
+        quotes.push(new Quote("My quote 4","Author 2"));
+        quotes.push(new Quote("My quote 5 is a big quote because I need to text the panel width or height expansion. " +
+                "My quote 5 is a big quote because I need to text the panel width or height expansion","Author 3"));
+        quotes.push(new Quote("My quote 6","Author 3"));
+        quotes.push(new Quote("My quote 7","Author 4"));
+        quotes.push(new Quote("My quote 8","Author 4"));
+        quotes.push(new Quote("My quote 9","Author 5"));
+        quotes.push(new Quote("My quote 10","Author 5"));
+
+
+        function changeText(){
+            var index = Math.floor(Math.random() * quotes.length);
+            document.getElementById('quotetext').innerHTML = "\""+quotes[index].quote + "\"";
+            document.getElementById('authortext').innerHTML = quotes[index].author;
+            changeTweetText();
+        }
+
+        function changeTweetText(){
+            var quotetext = document.getElementById('quotetext').innerHTML;
+            var authortext = " ("+document.getElementById('authortext').innerHTML+")";
+            var tweettext = "https://twitter.com/intent/tweet?text=via @randomquotemachine ";
+            document.getElementById('tweet').href=tweettext + quotetext + authortext;
+        }
+
+    </script>
+</head>
+<body>
+
+<div class="container-fluid">
+    <h1 class="text-center text-info">Random Quotes Machine</h1>
+
+    <div class="row" style="margin-left: 20%; margin-right: 20%">
+            <h4 class="text-justify">These are some of my favorite quotes I had collected during medical school I recently
+                rediscovered via the wayback machine. I hope you enjoy them!</h4>
+    </div>
+
+    <div class="row text-center top-space">
+        <p class="btn btn-default btn-lg" onclick="changeText()">New Quote</p>
+    </div>
+
+    <div class="panel panel-primary center-block top-space" style="width: 30%">
+        <div class="panel-heading">
+        <div class="panel-title">
+            <div class="row">
+                <div class="col-lg-6 text-lefts">
+                    Quote
+                </div>
+
+                <div class="col-lg-6 text-right">
+                    <a id="tweet" class="btn btn-primary twitter-share-button fa fa-twitter"
+                       href="#"
+                       data-size="large">
+                        Tweet</a>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="panel-body">
+            <h2 id="quotetext">The quote is here</h2>
+        </div>
+        <div class="panel-footer">
+            <h3 id="authortext" class="text-right">Author</h3>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
